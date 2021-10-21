@@ -14,7 +14,6 @@
 #include <string>
 #include <math.h>
 #include "OsTypes.h"
-#include "LzmaLib.h"
 
 #define IsBitSet(variable, bitNumber) bool((variable) & (1 << (bitNumber)))
 
@@ -30,11 +29,6 @@ namespace osuParser
 	// Trims (removes whitespace) passed string
 	//   str, ref string, string to trim
 	void TrimString(std::string & str);
-
-	// Decompress LZMA-compressed buffer
-	//   inBuf, vector<uint8_t>, input buffer with LZMA-compressed bytes
-	//   outBuf, ref vector<uint8_t>, output buffer where decompressed data will be written
-	void DecompressLZMA(const std::vector<uint8_t> &inBuf, std::vector<uint8_t> & outBuf);
 
 	// Checks to see if two double values are equal
 	//   a, double, first value to check

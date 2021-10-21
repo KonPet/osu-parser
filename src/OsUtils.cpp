@@ -51,27 +51,13 @@ void osuParser::TrimString(string & str) {
 	}));
 }
 
-// Decompress LZMA-compressed buffer
-//   inBuf, vector<uint8_t>, input buffer with LZMA-compressed bytes
-//   outBuf, ref vector<uint8_t>, output buffer where decompressed data will be written
-void osuParser::DecompressLZMA(const vector<uint8_t> &inBuf, vector<uint8_t> & outBuf)
-{
-	outBuf.clear();
-	// Reserves N bytes, shrinks to fit after decompression
-	outBuf.resize(inBuf.size() * 4); //-V112
-	size_t dstLen = outBuf.size();
-	size_t srcLen = inBuf.size() - LZMA_PROPS_SIZE - 8;
-	LzmaUncompress(&outBuf[0], &dstLen, &inBuf[LZMA_PROPS_SIZE + 8], &srcLen, &inBuf[0], LZMA_PROPS_SIZE);
-	outBuf.resize(dstLen);
-}
-
 // Checks to see if two double values are equal
 //   a, double, first value to check
 //   b, double, second value to check
 // Returns true if both values are equal, false otherwise
 bool osuParser::IsEqualDouble(const double & a, const double & b)
 {
-	return fabs(a - b) < DBL_EPSILON;
+	return (a == b);
 }
 
 // String names for each available mod
